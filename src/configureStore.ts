@@ -5,16 +5,19 @@ import { History } from "history";
 
 import {createRootReducer, LabFesState, rootSaga} from './store'
 
+import { composeWithDevTools } from 'redux-devtools-extension'
 
 
 export default function configureStore(history : History, initialState : LabFesState): Store<LabFesState>{
 
     const sagaMiddleware = createSagaMiddleware();
 
+    const composeEnhancers = composeWithDevTools({})
+
     const store = createStore(
         createRootReducer(history),
         initialState,
-        applyMiddleware(routerMiddleware(history), sagaMiddleware)
+        composeEnhancers(applyMiddleware(routerMiddleware(history), sagaMiddleware))
     );
     
     sagaMiddleware.run(rootSaga);

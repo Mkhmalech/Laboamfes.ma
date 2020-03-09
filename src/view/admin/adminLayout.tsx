@@ -36,10 +36,21 @@ export const AdminLayout: React.FunctionComponent<IAdminLayoutProps> = (props) =
   ) ;
 };
 const mobile = (args : any) => css`
-  @media (max-width: 920px) {
+  @media (min-width: 576px) {
     ${css(args)};
   }
 `
+const tablet = (args : any) => css`
+  @media (min-width: 768px) {
+    ${css(args)};
+  }
+`
+const desktop = (args: any) => css`
+  @media (min-width: 992px){
+    ${css(args)};
+  }
+`
+
 const AdminSidebar = styled.section`
 
   flex : 0 0 20%;

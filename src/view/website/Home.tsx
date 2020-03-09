@@ -4,6 +4,7 @@ import SliderApp from '../../containers/SliderApp'
 import AboutUs from './AboutUs'
 import Service from './Service'
 import ContactUs from './ContactUs'
+import Header from './Header';
 
 
 interface HomeProps {
@@ -13,6 +14,7 @@ export const Home: React.FunctionComponent<HomeProps> = (props) => {
   return (
     <>
       <div>
+        <Header />
         <section id="Acceuille">
           <SliderApp />
           <ul className="home-options clearfix">

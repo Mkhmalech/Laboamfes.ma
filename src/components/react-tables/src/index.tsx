@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import * as flexify from './flexify'
+import { keyframes, css } from '../../../theme';
 
 interface ITableProps {
   Header: any[]
@@ -8,7 +9,7 @@ interface ITableProps {
   filterDataList : (e: any) => void
   getInputValue : (e:any) => void
   handleReferredValue : (e:any) => void
-  onBlurTest : () => void
+  fetch : any
 }
 
 
@@ -19,7 +20,8 @@ const TableComponent: React.FunctionComponent<ITableProps> =
     Data, 
     filterDataList, 
     getInputValue,
-    handleReferredValue
+    handleReferredValue,
+    fetch
   }) => {
 
   // const { catalogList } = Data;
@@ -62,30 +64,31 @@ const TableComponent: React.FunctionComponent<ITableProps> =
 
         Data.map((list : any)=>
 
-        <TableRow key={list.id} datatype={list.id} >
+        <TableRow key={list.id || list.testId} datatype={list.testId} fetch={fetch}>
           
 
             <TableBodyCell width="50%" >
 
-              {list.name.fr} 
+              {list.testName || list.name.fr} 
               
             </TableBodyCell>   
           
           
-          <TableBodyCell width="10%" > {list.finance[0] ? list.finance[0].Bcode : "-"} </TableBodyCell>
-          <TableBodyCell width="10%" > {list.finance[0] ? Math.floor(list.finance[0].Bcode * 1.34)  : "-"} </TableBodyCell>
+          <TableBodyCell width="10%" > {/* list.finance[0] ? list.finance[0].Bcode : list.Bcode */} </TableBodyCell>
+          <TableBodyCell width="10%" > {/* list.finance[0] ? Math.floor(list.finance[0].Bcode * 1.34)  : Math.floor(list.Bcode * 1.34) */} </TableBodyCell>
           <TableBodyCell width="10%" > 
             <input 
               style={{width : '100%', border: 'none'}}
-              name={list.name.fr}
+              name={list.testName || list.name.fr }
               onBlur={e=>getInputValue(e)}
             /> 
           </TableBodyCell>
           <TableBodyCell width="10%">  
-            <select id="referredPrice"
+            <select id="referredTest"
               style={{width : '100%', border: 'none'}} 
               onChange={e=>handleReferredValue(e)}
             >
+              <option>{list.testReferred === "true" ? "oui" : "non" }</option>
               <option>oui</option>
               <option>non</option>
             </select>  
@@ -121,11 +124,44 @@ export const TableStyled = styled('table').attrs({})`
 
   ${flexify.Column()}
 
-`
+  tbody {
+    -ms-overflow-style: none;
+  }
 
-export const TableRow = styled('tr')`
+  tbody::-webkit-scrollbar {
+    display : none
+  }
+
+
+`
+const gradient = keyframes`
+	0% {
+		background-position: 100% 50%;
+	}
+	25% {
+		background-position: 50% 0%;
+  }
+  50% {
+		background-position: 0% 50%;
+	}
+	100% {
+		background-position: 50% 100%;
+	}
+`
+const fetchAnim = css`
+    color : transparent;
+    background: linear-gradient(-45deg,#d3cfcd,#d5281f,#d3cfcd,#a6d230);
+    background-size: 400% 400%;
+    animation: ${gradient} 2s ease infinite;
+` 
+
+export const TableRow = styled('tr')<{fetch? : boolean}>`
 
   ${flexify.Parent()}
+
+  th , th > input {
+    ${props => props.fetch ? fetchAnim : null}
+  }
 
 `
 export const TableHeaderCell = styled('th')<{width? : string}>`

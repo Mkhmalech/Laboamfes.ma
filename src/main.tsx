@@ -2,7 +2,7 @@ import * as React from 'react';
 import { LabFesState } from './store';
 import { Store } from 'redux';
 import { Provider } from 'react-redux';
-import { Router, Switch, Route,  } from 'react-router';
+import { Router, Switch, Route  } from 'react-router';
 import { History } from "history";
 import { Home, Login } from './view'
 
