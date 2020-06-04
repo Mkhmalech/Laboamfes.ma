@@ -8,13 +8,13 @@ import {createRootReducer, LabFesState, rootSaga} from './store'
 import { composeWithDevTools } from 'redux-devtools-extension'
 
 
-export default function configureStore(history : History, initialState : LabFesState): Store<LabFesState>{
+export default function configureStore(history : History, initialState : any): Store<LabFesState>{
 
     const sagaMiddleware = createSagaMiddleware();
 
     const composeEnhancers = composeWithDevTools({})
 
-    const store = createStore(
+    const store : any = createStore(
         createRootReducer(history),
         initialState,
         composeEnhancers(applyMiddleware(routerMiddleware(history), sagaMiddleware))

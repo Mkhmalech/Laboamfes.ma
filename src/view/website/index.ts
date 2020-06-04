@@ -1,5 +1,0 @@
-export * from './AboutUs'
-export * from './ContactUs'
-export * from './Header'
-export * from './Home'
-export * from './Service'

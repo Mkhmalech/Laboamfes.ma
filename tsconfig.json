@@ -1,6 +1,6 @@
 {
   "include": [
-    "./src/*"
+    "./src/*", "src/store/config.ts", "src/theme/theme.ts"
   ],
   "compilerOptions": {
     "lib": [
