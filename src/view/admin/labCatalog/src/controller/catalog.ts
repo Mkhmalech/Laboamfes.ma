@@ -18,7 +18,8 @@ export class CatalogClass {
     this.token = token;
   }
 
-  catalogTestSave = () =>
+  catalogTestSave = () => {
+    this.setTestReported();
     this.dispatch({
       type: CatalogActions.CATALOG_LIST_UPDATE_TEST_BY_USER,
       payload: {
@@ -39,6 +40,7 @@ export class CatalogClass {
       },
       path: "labos"
     });
+  };
   saveData = () => {};
   // this.dispatch({
   //   type: CatalogActions.CATALOG_LIST_UPDATING_SAVE,
@@ -148,19 +150,7 @@ export class CatalogClass {
       type: CatalogActions.CATALOG_LIST_FILTER_TEST_NAME,
       path: "tests",
       payload: {
-        query: `query {
-                    LabTestFrenchSearch(query : "${name}" ){
-                      id
-                      name {
-                        fr
-                      }
-                      
-                      finance {
-                        Bcode
-                      }
-                    }
-                  }`
-      }
+        query: `query { LabTestFrenchSearch(query : "${name}" ){ id name { fr } finance { Bcode } } }` }
     });
 
   // set if Catalog test is

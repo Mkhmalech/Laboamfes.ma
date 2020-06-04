@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ContainerWrapper } from '../../components/react-wrapper/src'
+import { AdminWrapper } from '../../components/react-wrapper/src/wrapper'
 import { Button } from '../../containers/Button';
 import { Link } from 'react-router-dom';
 import { Input } from '../../containers/Input';
@@ -10,13 +10,13 @@ interface IForgotPasswordProps {
 
 const FP: React.FunctionComponent<IForgotPasswordProps> = (props) => {
   return (
-    <ContainerWrapper>
-      <p>Email : <Input /></p>
+    <AdminWrapper>
+      <p><Input placeholder="Email"/></p>
 
       <Button > Envoyer La Recuperation </Button>
-      <p><Button ><Link to="/connexion">vous avez un compte</Link></Button></p>
-      <p><Button ><Link to="/Enregistrement"> Enregistrer-vous </Link> </Button></p>
-    </ContainerWrapper>
+      <p><Button ><Link to="/Auth/connexion">vous avez un compte</Link></Button></p>
+      <p><Button ><Link to="/Auth/Enregistrement"> Enregistrer-vous </Link> </Button></p>
+    </AdminWrapper>
   );
 };
 

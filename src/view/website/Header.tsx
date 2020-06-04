@@ -16,18 +16,17 @@ export function Header(props: HeaderProps) {
         activeClass: 'nav-active'
     };
     return (
-        <div>
-            <header id="header">
+        <>
                 <div className="container">
                     <div className="logo-container">
                         <ScrollLink style={{ cursor: 'pointer' }} to="home" {...options} activeClass="" href="./connexion">
                             <span className="logo-img" />
-                            <LogoSpanTitle className="logo-text logo-text-part1">LaboAM</LogoSpanTitle>
-                            <LogoSpanTitle className="logo-text logo-text-part2">Fes</LogoSpanTitle>
+                            {/* <LogoSpanTitle className="logo-text logo-text-part1">LaboAM</LogoSpanTitle>
+                            <LogoSpanTitle className="logo-text logo-text-part2">Fes</LogoSpanTitle> */}
                         </ScrollLink>
                     </div>
                     <nav className="nav-main">
-                        <ul>
+                        {/* <ul>
                             <li><ScrollLink to="Acceuille" {...options}>Acceuille</ScrollLink></li>
                             <li><ScrollLink to="Service" {...options}>Service</ScrollLink></li>
                             <li><ScrollLink to="PourQuoi-Nous" {...options}>PourQuoi-Nous</ScrollLink></li>
@@ -35,11 +34,10 @@ export function Header(props: HeaderProps) {
                             <li><ScrollLink to="Equipe" {...options}>Equipe</ScrollLink></li>
                             <li><ScrollLink to="Rendez-Vous" {...options}>Rendez-Vous</ScrollLink></li>
                             <li><ScrollLink to="ContactUs" {...options}>Contact</ScrollLink></li>
-                        </ul>
+                        </ul> */}
                     </nav>
                 </div>
-            </header>
-        </div>
+        </>
     )
 }
 

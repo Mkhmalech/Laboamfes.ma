@@ -1,4 +1,4 @@
-export const api = "http://localhost:8080";
+export const api = "https://ittyni.com/api";
 
 export const apiCall = async (method: string, url: string, path: string, data?: any) => {
     const res = await fetch(`${url}/${path}`, {

@@ -9,7 +9,7 @@ import { TableStyled, TableRow, TableHeaderCell, TableBodyCell } from '../../../
 import { ModalLayout, ModalContainer, ModalFooter } from '../../../../../components/react-modals/src/modal';
 import { Button } from '../../../../../containers/Button';
 import { Input } from '../../../../../containers/Input';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom"
+import { BrowserRouter as Router, Route, Link, Redirect } from "react-router-dom"
 
 
 const ModalContent = styled.div`
@@ -66,12 +66,12 @@ export const LabCatalog: React.FC<ICatalogProps> = ({
           return <AddModifyCatalogTest catalog={catalog} match={match} selectedTest={selectedTest}/>
         }} />
 
-        <Route exact path="/admin/:user/dashboard" render={({ match }) => {
+        <Route exact path="/admin/:user/catalog" render={({ match }) => {
           return (<>
             <ModalHeader>
               <div><h3>Ajouter Nouveau Analyse :</h3></div>
               <div>
-                <ModalClose onClick={catalog.ModulConfirmationClose}><Link to="/admin/:user/dashboard">&times;</Link></ModalClose>
+                <ModalClose onClick={catalog.ModulConfirmationClose}><Link to="/admin/:user/catalog">&times;</Link></ModalClose>
               </div>
             </ModalHeader>
             <hr />
@@ -127,7 +127,6 @@ export const LabCatalog: React.FC<ICatalogProps> = ({
         Ajouter analyse
         <span></span>
       </SaveButton>
-      <CancelButton > Annuler </CancelButton>
       <TableStyled>
         <thead>
           <TableRow fetch={catalogListFetching}>
@@ -150,7 +149,7 @@ export const LabCatalog: React.FC<ICatalogProps> = ({
                 <TableBodyCell>{Math.floor(test.Bcode * 1.34)}</TableBodyCell>
                 <TableBodyCell>{test.testPrice}</TableBodyCell>
                 <TableBodyCell>{test.testReferred}</TableBodyCell>
-                <TableBodyCell>{test.testReported}</TableBodyCell>
+                <TableBodyCell>{`${test.testReported} H`}</TableBodyCell>
               </TableRow>
             )
             : <TableRow></TableRow>}
@@ -159,7 +158,7 @@ export const LabCatalog: React.FC<ICatalogProps> = ({
     </>
     )
   } else {
-    return <div>Vous n ete pas connecter !!!! </div>
+    return <Redirect to="/auth" />
   }
 };
 
@@ -253,7 +252,7 @@ const AddModifyCatalogTest = ({ catalog, match, selectedTest }: any) => {
         <div><h3>{match.params.test}</h3></div>
         <div>
         <ModalClose onClick={catalog.ModulConfirmationClose}>
-          <Link to="/admin/:user/dashboard">
+          <Link to="/admin/:user/catalog">
             <span onClick={e=>catalog.fetchExistingCatalog()}>&times;</span>
           </Link>
         </ModalClose>
@@ -273,8 +272,17 @@ const AddModifyCatalogTest = ({ catalog, match, selectedTest }: any) => {
           <p>
             Envoi :
           <select onChange={e=>catalog.setTestReferred(e.target.value)}>
-              <option>oui</option>
-              <option>non</option>
+              {selectedTest.testReferred === 'oui' ?
+                <>
+                <option>oui</option>
+                <option>non</option>
+                </>
+                :
+                <>
+                <option>non</option>
+                <option>oui</option>
+                </>
+              }
             </select>
             Delai : 
               <input placeholder={selectedTest.testReported ? `${selectedTest.testReported}` : '1'} 

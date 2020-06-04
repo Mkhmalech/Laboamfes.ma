@@ -19,12 +19,12 @@ const LoginComponent: React.FunctionComponent<ILoginProps> = ({dispatch, isAuth,
 
   if(!token && !isAuth)
     return(
-        <div style={{marginTop : '250px', padding : "0 25px"}}>
+        <div>
           <p><Input placeholder="Email" onChange={e=> login.setEmail(e.target.value)}/></p>
           <p><Input type="password" placeholder="Password" onChange={e=> login.setPassword(e.target.value)}/></p>
           <Button onClick={e=> login.goIn()}>Entrer </Button>
-          <p><Button ><Link to="/Enregistrement">S'Enregistrer</Link></Button></p>
-          <p><Button ><Link to="/Recupere-mot-de-passe"> Recuper Mot de Passe </Link> </Button></p>
+          <p><Button ><Link to="/auth/Enregistrement">S'Enregistrer</Link></Button></p>
+          <p><Button ><Link to="/auth/Recupere-mot-de-passe"> Recuper Mot de Passe </Link> </Button></p>
         </div>
     ) ;
   else if(token && !isAuth){
@@ -38,7 +38,7 @@ const LoginComponent: React.FunctionComponent<ILoginProps> = ({dispatch, isAuth,
       )
     }
   return(
-    <Redirect to="/admin/:user/dashboard" />
+    <Redirect to="/admin/:user/catalog" />
   )
 };
 

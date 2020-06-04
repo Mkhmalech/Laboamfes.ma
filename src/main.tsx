@@ -2,9 +2,10 @@ import * as React from 'react';
 import { LabFesState } from './store';
 import { Store } from 'redux';
 import { Provider } from 'react-redux';
-import { Router, Switch, Route  } from 'react-router';
+import { Router, Switch, Route, Redirect } from 'react-router';
 import { History } from "history";
-import { Home, Login } from './view'
+import { Home } from './view'
+import {Auth } from './view/auth/Auth'
 
 import { AdminLayout } from './view/admin/adminLayout';
 
@@ -17,8 +18,10 @@ const Main: React.FC<MainProps> = ({ store, history }) =>  (
         <Provider store={store}>
             <Router history={history}>
                 <Switch>                    
-                    <Route path="/auth"  component={Login} />
+                    <Route path="/auth"  component={Auth} />
+                    <Redirect path="/auth/*"  to="/auth" />
                     <Route path="/admin" component={AdminLayout} />
+                    <Redirect path="/admin/*" to="/auth" />
                     <Route path="/" component={Home} />
                 </Switch>
             </Router>

@@ -11,5 +11,5 @@
 	path = src/components/react-tables
 	url = https://github.com/Mkhmalech/react-tables
 [submodule "labPersonal-ittyni"]
-	path = labPersonal-ittyni
+	path = src/labPersonal-ittyni
 	url = git@github.com:Mkhmalech/labPersonal-ittyni.git

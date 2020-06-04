@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { ContainerWrapper } from '../../components/react-wrapper/src'
+import { AdminWrapper } from '../../components/react-wrapper/src/wrapper'
 import { Input } from '../../containers/Input';
 import {Button} from '../../containers/Button';
 import { Link } from 'react-router-dom';
@@ -17,15 +17,15 @@ const SignupComponent: React.FunctionComponent<ISignupProps> = ({dispatch} : any
   const signUp = new Auth(dispatch, 'users');
 
   return(
-      <ContainerWrapper>
-          <p>Email : <Input onChange={e=> signUp.setEmail(e.target.value)}/></p>
-          <p>MOT DE PASSE : <Input type="password" onChange={e => signUp.setPassword(e.target.value)} /></p>
-          <p>CONFIRMER MOT DE PASSE : <Input type="password" onChange={e => signUp.setConfirmPassword(e.target.value)} /></p>
+      <AdminWrapper>
+          <p><Input placeholder="Email" onChange={e=> signUp.setEmail(e.target.value)}/></p>
+          <p><Input type="password" placeholder="Password" onChange={e => signUp.setPassword(e.target.value)} /></p>
+          <p><Input type="password" placeholder="Confirmer Password" onChange={e => signUp.setConfirmPassword(e.target.value)} /></p>
 
           <Button onClick={ e => signUp.applyForRegistration() }> Enregistrer-vous </Button>
-          <p><Button ><Link to="/connexion">vous avez un compte</Link></Button></p>
-          <p><Button ><Link to="/Recupere-mot-de-passe"> Recuper Mot de Passe </Link> </Button></p>
-      </ContainerWrapper>
+          <p><Button ><Link to="/Auth/connexion">vous avez un compte</Link></Button></p>
+          <p><Button ><Link to="/Auth/Recupere-mot-de-passe"> Recuper Mot de Passe </Link> </Button></p>
+      </AdminWrapper>
   );
 };
 
