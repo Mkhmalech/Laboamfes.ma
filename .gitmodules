@@ -13,3 +13,6 @@
 [submodule "labPersonal-ittyni"]
 	path = src/labPersonal-ittyni
 	url = git@github.com:Mkhmalech/labPersonal-ittyni.git
+[submodule "src/authentification-redux-lib"]
+	path = src/authentification-redux-lib
+	url = https://github.com/Mkhmalech/authentification-redux-lib.git
