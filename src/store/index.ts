@@ -2,24 +2,15 @@ import { combineReducers } from "redux";
 import { RouterState, connectRouter } from "connected-react-router";
 import { History } from "history";
 
-// import SliderReducer from './reducers/SliderReducer'
-
-
-
 //===> from saga middleware
 import { fork, all } from 'redux-saga/effects'
 
-
-export interface LabFesState {
-  // slider        : SliderState
-  router           : RouterState
-  // auth          : AuthState
-  // catalog       : CatalogState
-}
+//===> auth component
+import AuthReducer, {AuthSaga} from '../authentification-redux-lib/index'
 
 export const createRootReducer = (history: History) =>
   combineReducers({
-    // auth   : AuthReducer,
+    auth   : AuthReducer,
     // slider : SliderReducer,
     // catalog: catalogListReducer,
     router : connectRouter(history)
@@ -29,7 +20,7 @@ export function* rootSaga() {
   yield all([
     
     //  Auth
-    //  fork(AuthSaga),
+     fork(AuthSaga),
 
     //  Catalog
     //  fork(CatalogSaga)

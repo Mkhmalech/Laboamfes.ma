@@ -1,7 +1,6 @@
 /* eslint-disable spaced-comment, @typescript-eslint/no-explicit-any */
 /// <reference types="react-scripts" />
-/// <reference types="./components/authentification-redux-lib" />
-/// <reference types="./view/admin/labCatalog" />
+/// <reference types="./authentification-redux-lib" />
 
 
 // laboratoire fes 
@@ -86,13 +85,18 @@ type AdressCity     = string
 type AdressCountry  = string
 interface Address {}
 
-// Global Interface
-interface Window {
-  INITIAL_REDUX_STATE: any
-}
-
 /*************************
 ***** Global Functions ***
 **************************/
 
-
+// store
+interface LaboFesState {
+  // slider        : SliderState
+  router        : RouterState
+  auth          : AuthState
+  // catalog       : CatalogState
+}
+// Global Interface
+interface Window {
+  INITIAL_REDUX_STATE: any
+}

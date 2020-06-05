@@ -1,15 +1,24 @@
 import * as React from 'react';
 import Dock from './Docks'
 import * as Wrapper from '../common/adminWrappers'
+import { useSelector } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 export const AdminLayout = () => {
 
-    return (
+    // states params 
+    const {username} = useSelector(({auth} : LaboFesState)=>auth.login) || undefined
+
+    // close/open sideMenu
+    const [closeSideMenu, setcloseSideMenu] = React.useState(false)
+
+    // check if user connected
+    const {isAuth} = useSelector((state: LaboFesState) => state.auth.login);
+
+    return (isAuth &&
         <Wrapper.admin>
-
-
             <Wrapper.header>
-                i<span style={{ color: 'red' }}>TT</span>yni
+                Laboratoire d'analyse medicale <span style={{ color: 'red' }}>Fes</span>
             </Wrapper.header>
 
             <Wrapper.container>
@@ -23,9 +32,9 @@ export const AdminLayout = () => {
                  * will be storage in a json file 
                  * 
                  */}
-                <Wrapper.dock >  <Dock username='mohammed' closeOpenSide={() => false} /> </Wrapper.dock>
+                <Wrapper.dock >  <Dock username={username || ''} closeOpenSide={() => setcloseSideMenu(!closeSideMenu)} /> </Wrapper.dock>
 
-                <Wrapper.main closed={false}>
+                <Wrapper.main closed={closeSideMenu}>
                     {/**
                      * 
                      * @khmamed
@@ -43,11 +52,10 @@ export const AdminLayout = () => {
 
 
                     {/*** module content *******
-                    *  
-                    * @TODO
-                    * 
-                    */
-                    }
+                      *  
+                      * @TODO
+                      * 
+                     */}
                     <Wrapper.content>
                         {/* <Wrapper.tabModule>ModuleTabs</Wrapper.tabModule> */}
                         <Wrapper.page>
@@ -59,4 +67,6 @@ export const AdminLayout = () => {
             </Wrapper.container>
         </Wrapper.admin>
     )
+    ||
+    (<Redirect to='/auth' />)
 }

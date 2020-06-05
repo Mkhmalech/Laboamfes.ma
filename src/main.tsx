@@ -1,14 +1,14 @@
 import * as React from 'react';
-import { LabFesState } from './store';
 import { Store } from 'redux';
 import { Provider } from 'react-redux';
 import { Router, Switch, Route, Redirect } from 'react-router';
 import { History } from "history";
 
 import { AdminLayout } from './admin/layout';
+import { AuthComponent } from './authentification-redux-lib/src/web'
 
 interface MainProps {
-    store: Store<LabFesState>;
+    store: Store<LaboFesState>;
     history: History
 }
 
@@ -16,8 +16,7 @@ const Main: React.FC<MainProps> = ({ store, history }) =>  (
         <Provider store={store}>
             <Router history={history}>
                 <Switch>                    
-                    {/* <Route path="/auth"  component={Auth} />
-                    <Redirect path="/auth/*"  to="/auth" /> */}
+                    <Route path="/auth"  component={AuthComponent} />
                     <Route path="/" component={AdminLayout} />
                     {/* <Redirect path="/admin/*" to="/auth" /> */}
                     {/* <Route path="/" component={Home} /> */}

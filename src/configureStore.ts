@@ -3,12 +3,12 @@ import { routerMiddleware } from 'connected-react-router';
 import createSagaMiddleware from 'redux-saga';
 import { History } from "history";
 
-import {createRootReducer, LabFesState, rootSaga} from './store'
+import {createRootReducer, rootSaga} from './store'
 
 import { composeWithDevTools } from 'redux-devtools-extension'
 
 
-export default function configureStore(history : History, initialState : any): Store<LabFesState>{
+export default function configureStore(history : History, initialState : LaboFesState): Store<LaboFesState>{
 
     const sagaMiddleware = createSagaMiddleware();
 

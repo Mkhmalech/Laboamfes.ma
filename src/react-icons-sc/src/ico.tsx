@@ -5,14 +5,14 @@ export interface icoProps {
     className : string
     viewBox : string
     paths : string[]
-    color? : string
-    width? : string
-    height? : string
+    color? : string | number
+    width? : string | number
+    height? : string | number
     g? : any 
     styles? : string
 }
 
-export const Ico = styled(({className, viewBox, paths, g} : icoProps)=>(
+export const Ico = styled(({className, viewBox, paths, g,} : icoProps)=>(
     <svg 
         className ={className}
         version="1.1" 
