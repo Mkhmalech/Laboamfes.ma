@@ -8,6 +8,8 @@ import { fork, all } from 'redux-saga/effects'
 //===> auth component
 import AuthReducer, {AuthSaga} from '../authentification-redux-lib/index'
 
+//===> staff component
+
 export const createRootReducer = (history: History) =>
   combineReducers({
     auth   : AuthReducer,

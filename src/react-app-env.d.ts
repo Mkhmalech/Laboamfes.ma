@@ -1,6 +1,7 @@
 /* eslint-disable spaced-comment, @typescript-eslint/no-explicit-any */
 /// <reference types="react-scripts" />
 /// <reference types="./authentification-redux-lib" />
+/// <reference types="./ittyni-staff" />
 
 
 // laboratoire fes 
@@ -94,6 +95,7 @@ interface LaboFesState {
   // slider        : SliderState
   router        : RouterState
   auth          : AuthState
+  staff         : LabStaffState
   // catalog       : CatalogState
 }
 // Global Interface
