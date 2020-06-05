@@ -1,9 +1,10 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Ico } from '../react-icons-sc/src/ico';
 import { profile } from './icons/profile';
 import { staff } from './icons/staff';
 import { catalog } from './icons/catalog';
+import { useSelector } from 'react-redux';
 
 interface IDockProps {
   username: string
@@ -11,6 +12,9 @@ interface IDockProps {
 }
 
 const Dock: React.FunctionComponent<IDockProps> = ({ username, closeOpenSide }) => {
+
+  // get location from state
+  const {pathname} = useLocation()
 
   const docksData = [
     {pageLink : `/admin/${username}/account`, icon : profile, isUser : 'all'},
@@ -20,22 +24,23 @@ const Dock: React.FunctionComponent<IDockProps> = ({ username, closeOpenSide }) 
 
   return (
     <>
-      {docksData.map(({pageLink, icon }:any)=>
-        <DocButton onClick={closeOpenSide} pageLink={pageLink} icon={<Ico {...icon} width={30} height={30} color="rgb(0, 0, 0)"/>}/>
-      )}
+      {docksData.map(({pageLink, icon }:any)=>{
+        return (
+        <DocButton isActive={pageLink == location.pathname ? true : false} key={pageLink} onClick={closeOpenSide} pageLink={pageLink} icon={<Ico {...icon} width={30} height={30} color="rgb(0, 0, 0)"/>}/>
+      )})}
       
     </>
   );
 };
 
 
-const DocButton: React.FC<any> = ({ pageLink, icon, onClick }) => {
+const DocButton: React.FC<any> = ({ pageLink, icon, isActive, onClick }) => {
 
   // click button handler
 
   return (
     <button
-      onClick={onClick}
+      onClick={isActive ? onClick : undefined}
       style={{
         backgroundColor: '#eaeaea',
         width: 50,
