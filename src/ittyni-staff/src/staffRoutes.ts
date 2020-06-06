@@ -7,7 +7,7 @@ export const staffRoutes = {
     
     StaffListAll : {
         admin : {
-            path : '/admin/:user/staff/list-all-employers',
+            path : '/admin/:user/staff',
             component : StaffListALL 
         },
         web : {}

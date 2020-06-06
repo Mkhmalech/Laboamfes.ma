@@ -9,10 +9,12 @@ import { fork, all } from 'redux-saga/effects'
 import AuthReducer, {AuthSaga} from '../authentification-redux-lib/index'
 
 //===> staff component
+import {LabLaboStaffSaga, staffReducer} from '../ittyni-staff/index'
 
 export const createRootReducer = (history: History) =>
   combineReducers({
     auth   : AuthReducer,
+    staff  : staffReducer,
     // slider : SliderReducer,
     // catalog: catalogListReducer,
     router : connectRouter(history)
@@ -23,6 +25,9 @@ export function* rootSaga() {
     
     //  Auth
      fork(AuthSaga),
+     
+    //  satff
+     fork(LabLaboStaffSaga),
 
     //  Catalog
     //  fork(CatalogSaga)

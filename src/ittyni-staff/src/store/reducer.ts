@@ -1,6 +1,6 @@
 import { AnyAction } from "redux";
 import { StaffActions } from './actions';
-const initialState : LabStaffState = {
+const initialState : any = {
 
 }
 

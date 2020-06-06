@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { Table, Tr, Th, Td } from './listStyle';
-import { TitleTablePararameters } from '../../../ittyni-labsetting/src/common/settingStyle';
+import { TitleTablePararameters } from '../common/settingStyle';
 import { staff } from '../dispatcher/staff';
 import { useSelector } from 'react-redux';
 
@@ -99,7 +99,7 @@ export const StaffListALL: React.FC<any> = () => {
                 List des Personelles de laboratoire CHU
             </TitleTablePararameters>
 
-            <Link to={'./add-new-employer'} >Ajouter Nouveau </Link>
+            <Link to={'./staff/add-new-employer'} >Ajouter Nouveau </Link>
 
             <hr />
             <div>

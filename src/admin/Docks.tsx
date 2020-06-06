@@ -5,6 +5,7 @@ import { profile } from './icons/profile';
 import { staff } from './icons/staff';
 import { catalog } from './icons/catalog';
 import { useSelector } from 'react-redux';
+import { settings } from './icons/settings';
 
 interface IDockProps {
   username: string
@@ -20,6 +21,7 @@ const Dock: React.FunctionComponent<IDockProps> = ({ username, closeOpenSide }) 
     {pageLink : `/admin/${username}/account`, icon : profile, isUser : 'all'},
     {pageLink : `/admin/${username}/staff`, icon : staff, isUser : 'admin'},
     {pageLink : `/admin/${username}/catalog`, icon : catalog, isUser : 'all'},
+    {pageLink : `/admin/${username}/settings`, icon : settings, isUser : 'admin'},
   ]
 
   return (

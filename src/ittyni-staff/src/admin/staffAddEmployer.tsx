@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import './style.css'
-import { TitleTablePararameters } from '../../../ittyni-labsetting/src/common/settingStyle';
+import { TitleTablePararameters } from '../common/settingStyle';
 import { staff } from '../dispatcher/staff';
 import { useSelector } from 'react-redux';
 

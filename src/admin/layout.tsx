@@ -2,7 +2,10 @@ import * as React from 'react';
 import Dock from './Docks'
 import * as Wrapper from '../common/adminWrappers'
 import { useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Route } from 'react-router-dom';
+
+// staff routes
+import {staffRoutes} from '../ittyni-staff/index'
 
 export const AdminLayout = () => {
 
@@ -59,6 +62,8 @@ export const AdminLayout = () => {
                     <Wrapper.content>
                         {/* <Wrapper.tabModule>ModuleTabs</Wrapper.tabModule> */}
                         <Wrapper.page>
+                            <Route path={staffRoutes.StaffListAll.admin.path} component={staffRoutes.StaffListAll.admin.component} />
+                            <Route path={staffRoutes.StaffAddEmployer.admin.path} component={staffRoutes.StaffAddEmployer.admin.component} />
                         </Wrapper.page>
                     </Wrapper.content>
 
