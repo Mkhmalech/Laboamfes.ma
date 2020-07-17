@@ -2,13 +2,13 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { CatalogClass } from '../controller/catalog';
-import { LabFesState } from '../../../../../store';
+// import { LabFesState } from '../store';
 // import Table from '../../../../../components/react-tables/src'
 import styled from 'styled-components';
-import { TableStyled, TableRow, TableHeaderCell, TableBodyCell } from '../../../../../components/react-tables/src/index';
-import { ModalLayout, ModalContainer, ModalFooter } from '../../../../../components/react-modals/src/modal';
-import { Button } from '../../../../../containers/Button';
-import { Input } from '../../../../../containers/Input';
+// import { TableStyled, TableRow, TableHeaderCell, TableBodyCell } from '../../../../../components/react-tables/src/index';
+// import { ModalLayout, ModalContainer, ModalFooter } from '../../../../../components/react-modals/src/modal';
+// import { Button } from '../../../../../containers/Button';
+// import { Input } from '../../../../../containers/Input';
 import { BrowserRouter as Router, Route, Link, Redirect } from "react-router-dom"
 
 
@@ -30,137 +30,137 @@ const ModalHeader = styled.div`
   width: 100%;
 `
 
-interface ICatalogProps extends CatalogState {
-  dispatch: Dispatch
-  token?: AuthToken
-}
+// interface ICatalogProps extends CatalogState {
+//   dispatch: Dispatch
+//   token?: AuthToken
+// }
 
-export const LabCatalog: React.FC<ICatalogProps> = ({
-  dispatch, token, addNewModal, catalogList,
-  selectedTest, catalogListFetching, catalogListTest,
-  catalogTestsDetails, catalogModalFetchTests
-}) => {
+// export const LabCatalog: React.FC<ICatalogProps> = ({
+//   dispatch, token, addNewModal, catalogList,
+//   selectedTest, catalogListFetching, catalogListTest,
+//   catalogTestsDetails, catalogModalFetchTests
+// }) => {
 
-  if(token){
-  const catalog = new CatalogClass(dispatch, token);
+//   if(token){
+//   const catalog = new CatalogClass(dispatch, token);
 
-  if (!catalogListFetching && catalogListTest.length <= 0) catalog.fetchExistingCatalog()
+//   if (!catalogListFetching && catalogListTest.length <= 0) catalog.fetchExistingCatalog()
 
-  if (catalogListFetching && catalogListTest.length > 0) {
-    let catalogListIds: string[] = [];
-    catalogListTest.map(catalogTest => {
-      catalogListIds.push(catalogTest.testId)
-    })
+//   if (catalogListFetching && catalogListTest.length > 0) {
+//     let catalogListIds: string[] = [];
+//     catalogListTest.map(catalogTest => {
+//       catalogListIds.push(catalogTest.testId)
+//     })
 
-    catalog.fetchCatalogTests(catalogListIds);
-  }
+//     catalog.fetchCatalogTests(catalogListIds);
+//   }
 
-  if (addNewModal && catalogList.length <= 0) catalog.fetchLabTests();
+//   if (addNewModal && catalogList.length <= 0) catalog.fetchLabTests();
 
-  return (addNewModal &&
-    <ModalLayout>
-      <ModalContainer>
+//   return (addNewModal &&
+//     <ModalLayout>
+//       <ModalContainer>
 
-        <Route path="/admin/:user/catalog/addmodifytest/:test" render={({ match }) => {
+//         <Route path="/admin/:user/catalog/addmodifytest/:test" render={({ match }) => {
 
-          return <AddModifyCatalogTest catalog={catalog} match={match} selectedTest={selectedTest}/>
-        }} />
+//           return <AddModifyCatalogTest catalog={catalog} match={match} selectedTest={selectedTest}/>
+//         }} />
 
-        <Route exact path="/admin/:user/catalog" render={({ match }) => {
-          return (<>
-            <ModalHeader>
-              <div><h3>Ajouter Nouveau Analyse :</h3></div>
-              <div>
-                <ModalClose onClick={catalog.ModulConfirmationClose}><Link to="/admin/:user/catalog">&times;</Link></ModalClose>
-              </div>
-            </ModalHeader>
-            <hr />
-            <ModalContent>
-              <TableStyled>
-                <thead>
-                  <TableRow fetch={catalogModalFetchTests}>
-                    <TableHeaderCell width={"500px"} >
-                      <input placeholder={"Nom d'analyse"}
-                        style={{ width: '100%', border: 'none' }}
-                        onChange={e => catalog.filterCatalogList(e.target.value)}
-                      />
-                    </TableHeaderCell>
-                    <TableHeaderCell>B code </TableHeaderCell>
-                    <TableHeaderCell>Tarif </TableHeaderCell>
-                    <TableHeaderCell>Selectionner </TableHeaderCell>
-                  </TableRow>
-                </thead>
-                <tbody style={{ height: "350px", overflowY: "scroll" }}>
-                  {
-                    catalogList.map(test =>
-                      <TableRow >
-                        <TableBodyCell width={"500px"}>
-                          <Link to={`/admin/:user/catalog/addmodifytest/${test.name.fr}`} 
-                            onClick={e=>catalog.catalogTestSelected(test.id, test.name.fr, test.finance[0] ? test.finance[0].Bcode : "-")}
-                          >
-                            {test.name.fr}
-                          </Link></TableBodyCell>
-                        <TableBodyCell> {test.finance[0] ? test.finance[0].Bcode : "-"} </TableBodyCell>
-                        <TableBodyCell> {test.finance[0] ? Math.floor(test.finance[0].Bcode * 1.34) : "-"} </TableBodyCell>
-                        <TableBodyCell> {" "} </TableBodyCell>
+//         <Route exact path="/admin/:user/catalog" render={({ match }) => {
+//           return (<>
+//             <ModalHeader>
+//               <div><h3>Ajouter Nouveau Analyse :</h3></div>
+//               <div>
+//                 <ModalClose onClick={catalog.ModulConfirmationClose}><Link to="/admin/:user/catalog">&times;</Link></ModalClose>
+//               </div>
+//             </ModalHeader>
+//             <hr />
+//             <ModalContent>
+//               <TableStyled>
+//                 <thead>
+//                   <TableRow fetch={catalogModalFetchTests}>
+//                     <TableHeaderCell width={"500px"} >
+//                       <input placeholder={"Nom d'analyse"}
+//                         style={{ width: '100%', border: 'none' }}
+//                         onChange={e => catalog.filterCatalogList(e.target.value)}
+//                       />
+//                     </TableHeaderCell>
+//                     <TableHeaderCell>B code </TableHeaderCell>
+//                     <TableHeaderCell>Tarif </TableHeaderCell>
+//                     <TableHeaderCell>Selectionner </TableHeaderCell>
+//                   </TableRow>
+//                 </thead>
+//                 <tbody style={{ height: "350px", overflowY: "scroll" }}>
+//                   {
+//                     catalogList.map(test =>
+//                       <TableRow >
+//                         <TableBodyCell width={"500px"}>
+//                           <Link to={`/admin/:user/catalog/addmodifytest/${test.name.fr}`} 
+//                             onClick={e=>catalog.catalogTestSelected(test.id, test.name.fr, test.finance[0] ? test.finance[0].Bcode : "-")}
+//                           >
+//                             {test.name.fr}
+//                           </Link></TableBodyCell>
+//                         <TableBodyCell> {test.finance[0] ? test.finance[0].Bcode : "-"} </TableBodyCell>
+//                         <TableBodyCell> {test.finance[0] ? Math.floor(test.finance[0].Bcode * 1.34) : "-"} </TableBodyCell>
+//                         <TableBodyCell> {" "} </TableBodyCell>
 
-                      </TableRow>
-                    )
-                  }
-                </tbody>
-              </TableStyled>
-            </ModalContent>
-            <hr />
-            <ModalFooter>Selectionner test pour Ajouter ou Modifier votre catalog </ModalFooter>
-          </>)
-        }} />
+//                       </TableRow>
+//                     )
+//                   }
+//                 </tbody>
+//               </TableStyled>
+//             </ModalContent>
+//             <hr />
+//             <ModalFooter>Selectionner test pour Ajouter ou Modifier votre catalog </ModalFooter>
+//           </>)
+//         }} />
 
-      </ModalContainer>
-    </ModalLayout>
-  )
+//       </ModalContainer>
+//     </ModalLayout>
+//   )
 
-    ||
+//     ||
 
-    (<>
-      <h2>Catalogue de Laboratoire Fes</h2>
-      <SaveButton onClick={e => catalog.addNewTest()}>
-        Ajouter analyse
-        <span></span>
-      </SaveButton>
-      <TableStyled>
-        <thead>
-          <TableRow fetch={catalogListFetching}>
-            <TableHeaderCell width={"500px"}>Nom d'analyse </TableHeaderCell>
-            <TableHeaderCell>B code </TableHeaderCell>
-            <TableHeaderCell>Tarif </TableHeaderCell>
-            <TableHeaderCell>Traitance </TableHeaderCell>
-            <TableHeaderCell>Reference </TableHeaderCell>
-            <TableHeaderCell>Delai </TableHeaderCell>
-          </TableRow>
-        </thead>
+//     (<>
+//       <h2>Catalogue de Laboratoire Fes</h2>
+//       <SaveButton onClick={e => catalog.addNewTest()}>
+//         Ajouter analyse
+//         <span></span>
+//       </SaveButton>
+//       <TableStyled>
+//         <thead>
+//           <TableRow fetch={catalogListFetching}>
+//             <TableHeaderCell width={"500px"}>Nom d'analyse </TableHeaderCell>
+//             <TableHeaderCell>B code </TableHeaderCell>
+//             <TableHeaderCell>Tarif </TableHeaderCell>
+//             <TableHeaderCell>Traitance </TableHeaderCell>
+//             <TableHeaderCell>Reference </TableHeaderCell>
+//             <TableHeaderCell>Delai </TableHeaderCell>
+//           </TableRow>
+//         </thead>
 
-        <tbody>
-          {catalogTestsDetails ?
+//         <tbody>
+//           {catalogTestsDetails ?
 
-            catalogTestsDetails.map(test =>
-              <TableRow key={test.testId}>
-                <TableBodyCell width={"500px"}>{test.testName}</TableBodyCell>
-                <TableBodyCell>{test.Bcode}</TableBodyCell>
-                <TableBodyCell>{Math.floor(test.Bcode * 1.34)}</TableBodyCell>
-                <TableBodyCell>{test.testPrice}</TableBodyCell>
-                <TableBodyCell>{test.testReferred}</TableBodyCell>
-                <TableBodyCell>{`${test.testReported} H`}</TableBodyCell>
-              </TableRow>
-            )
-            : <TableRow></TableRow>}
-        </tbody>
-      </TableStyled>
-    </>
-    )
-  } else {
-    return <Redirect to="/auth" />
-  }
-};
+//             catalogTestsDetails.map(test =>
+//               <TableRow key={test.testId}>
+//                 <TableBodyCell width={"500px"}>{test.testName}</TableBodyCell>
+//                 <TableBodyCell>{test.Bcode}</TableBodyCell>
+//                 <TableBodyCell>{Math.floor(test.Bcode * 1.34)}</TableBodyCell>
+//                 <TableBodyCell>{test.testPrice}</TableBodyCell>
+//                 <TableBodyCell>{test.testReferred}</TableBodyCell>
+//                 <TableBodyCell>{`${test.testReported} H`}</TableBodyCell>
+//               </TableRow>
+//             )
+//             : <TableRow></TableRow>}
+//         </tbody>
+//       </TableStyled>
+//     </>
+//     )
+//   } else {
+//     return <Redirect to="/auth" />
+//   }
+// };
 
 const SaveButton = styled.button`
   margin : 5px;
@@ -178,69 +178,69 @@ const SearchTestsList = styled.div`
 `
 
 
-const mapStateToprops = ({ catalog, auth }: LabFesState) => ({
+// const mapStateToprops = ({ catalog, auth }: LabFesState) => ({
 
-  /**
-   * if @addNewModal pass to @true 
-   * launch modal 
-   */
-  addNewModal: catalog.addNewModal,
+//   /**
+//    * if @addNewModal pass to @true 
+//    * launch modal 
+//    */
+//   addNewModal: catalog.addNewModal,
 
-  /**
-   * 
-   */
-  selectedTest: catalog.selectedTest,
+//   /**
+//    * 
+//    */
+//   selectedTest: catalog.selectedTest,
 
-  /**
-   * @modal fetchTests @boolean 
-   * default @false
-   */
-  catalogModalFetchTests: catalog.catalogModalFetchTests,
-  /**
-   * 
-   */
-  catalogList: catalog.catalogList,
+//   /**
+//    * @modal fetchTests @boolean 
+//    * default @false
+//    */
+//   catalogModalFetchTests: catalog.catalogModalFetchTests,
+//   /**
+//    * 
+//    */
+//   catalogList: catalog.catalogList,
 
-  /**
-   * 
-   */
-  catalogListTest: catalog.catalogListTest,
+//   /**
+//    * 
+//    */
+//   catalogListTest: catalog.catalogListTest,
 
-  /**
-   * 
-   */
-  catalogListFetching: catalog.catalogListFetching,
+//   /**
+//    * 
+//    */
+//   catalogListFetching: catalog.catalogListFetching,
 
-  /**
-   * 
-   */
-  catalogUpdateConfirmMsg: catalog.catalogUpdateConfirmMsg,
+//   /**
+//    * 
+//    */
+//   catalogUpdateConfirmMsg: catalog.catalogUpdateConfirmMsg,
 
-  /**
-   * 
-   */
-  updatedCatalog: catalog.updatedCatalog,
+//   /**
+//    * 
+//    */
+//   updatedCatalog: catalog.updatedCatalog,
 
-  /**
-   * 
-   */
-  token: auth.login.token,
+//   /**
+//    * 
+//    */
+//   token: auth.login.token,
 
-  /**
-   * 
-   */
-  fetchTest: catalog.fetchTest,
+//   /**
+//    * 
+//    */
+//   fetchTest: catalog.fetchTest,
 
-  /**
-   * 
-   */
-  catalogTestsDetails: catalog.catalogTestsDetails
-})
-
-
-export default connect(mapStateToprops)(LabCatalog);
+//   /**
+//    * 
+//    */
+//   catalogTestsDetails: catalog.catalogTestsDetails
+// })
 
 
+// export default connect(mapStateToprops)(LabCatalog);
+
+export default <div>this is a catalog</div>
 
 const AddModifyCatalogTest = ({ catalog, match, selectedTest }: any) => {
   if(selectedTest) {
@@ -297,7 +297,7 @@ const AddModifyCatalogTest = ({ catalog, match, selectedTest }: any) => {
           </p>
       </ModalContent>
       
-      <ModalFooter><Button onClick={catalog.catalogTestSave}>Clicker pour Ajouter</Button></ModalFooter>
+      {/* <ModalFooter><Button onClick={catalog.catalogTestSave}>Clicker pour Ajouter</Button></ModalFooter> */}
     </div>
   )
   } else {

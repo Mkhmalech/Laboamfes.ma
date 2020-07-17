@@ -2,6 +2,7 @@
 /// <reference types="react-scripts" />
 /// <reference types="./authentification-redux-lib" />
 /// <reference types="./ittyni-staff" />
+/// <reference types="./ittyni-labsetting" />
 
 
 // laboratoire fes 
@@ -97,6 +98,7 @@ interface LaboFesState {
   auth          : AuthState
   staff         : LabStaffState
   // catalog       : CatalogState
+  setting ?     : LaboSetting
 }
 // Global Interface
 interface Window {

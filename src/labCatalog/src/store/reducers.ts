@@ -1,7 +1,7 @@
 import { combineReducers, Reducer } from "redux";
 import { CatalogActions } from "./actions";
 
-const initialState: CatalogState = {
+const initialState: any = {
   catalogList: [],
   addNewModal: false,
   catalogListTest: [],

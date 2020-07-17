@@ -1,6 +1,6 @@
 import { all, fork, takeEvery } from 'redux-saga/effects'
 import { AnyAction } from 'redux';
-import { tryFetching } from '../../../Store/config'
+import { tryFetching } from '../../../store/config'
 import {SettingActions} from '../store/actions'
 
 

@@ -11,12 +11,16 @@ import AuthReducer, {AuthSaga} from '../authentification-redux-lib/index'
 //===> staff component
 import {LabLaboStaffSaga, staffReducer} from '../ittyni-staff/index'
 
+//===> setting component
+import {settingReducer, LabLaboSettingSaga} from '../ittyni-labsetting/src'
+
 export const createRootReducer = (history: History) =>
   combineReducers({
     auth   : AuthReducer,
     staff  : staffReducer,
     // slider : SliderReducer,
     // catalog: catalogListReducer,
+    setting: settingReducer,
     router : connectRouter(history)
   });
 
@@ -28,6 +32,9 @@ export function* rootSaga() {
      
     //  satff
      fork(LabLaboStaffSaga),
+
+    //  setting
+     fork(LabLaboSettingSaga),
 
     //  Catalog
     //  fork(CatalogSaga)

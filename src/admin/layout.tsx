@@ -6,6 +6,10 @@ import { Redirect, Route } from 'react-router-dom';
 
 // staff routes
 import {staffRoutes} from '../ittyni-staff/index'
+import { settingRoutes } from '../ittyni-labsetting/src/settingRoutes';
+
+// catalog
+import {Catalog} from '../labCatalog/src'
 
 export const AdminLayout = () => {
 
@@ -62,8 +66,13 @@ export const AdminLayout = () => {
                     <Wrapper.content>
                         {/* <Wrapper.tabModule>ModuleTabs</Wrapper.tabModule> */}
                         <Wrapper.page>
-                            <Route path={staffRoutes.StaffListAll.admin.path} component={staffRoutes.StaffListAll.admin.component} />
+                            {/* staff */}
+                            <Route path={staffRoutes.StaffListAll.admin.path} component={staffRoutes.StaffListAll.admin.component} exact/>
                             <Route path={staffRoutes.StaffAddEmployer.admin.path} component={staffRoutes.StaffAddEmployer.admin.component} />
+                            {/* catalog */}
+                            {/* <Route path={`/admin/:user/catalog`} component={Catalog}/> */}
+                            {/* setting */}
+                            <Route path={settingRoutes.admin.laboSetting.path} component={settingRoutes.admin.laboSetting.component}/>
                         </Wrapper.page>
                     </Wrapper.content>
 

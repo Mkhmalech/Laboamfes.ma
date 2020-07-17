@@ -1,6 +1,6 @@
 import { all, call, fork, put, takeEvery } from 'redux-saga/effects'
 import { CatalogActions } from './actions';
-import * as config from '../../../../../config';
+import * as config from '../../../store/config';
 
 
 
@@ -12,7 +12,7 @@ function* LabCatalogListFetch({path, payload} : any){
         // yield put({type : CatalogActions.CATALOG_LIST_ALL_TESTS_FROM_API_FETCHING});
 
 
-        const res = yield call(config.apiCall, 'post', config.api, path, payload );
+        const res = yield call(config.callApi, 'post', config.api, path, payload );
 
         if(!res) {
             yield put({
@@ -48,7 +48,7 @@ function* LabCatalogListFilterTestName({path, payload} : any){
 
     try {
 
-        const res = yield call(config.apiCall, 'post', config.api, path, payload ); 
+        const res = yield call(config.callApi, 'post', config.api, path, payload ); 
 
         if(!res) {
             yield put({
@@ -75,7 +75,7 @@ function* LabCatalogUpdateTests({path, payload} : any){
 
     try {
 
-        const res = yield call(config.apiCall, 'post', config.api, path, payload ); 
+        const res = yield call(config.callApi, 'post', config.api, path, payload ); 
 
         // if(!res) {
         //     yield put({
@@ -105,7 +105,7 @@ function* LabCatalogUpdateTestsFetch({path, payload} : any){
 
     try {
 
-        const res = yield call(config.apiCall, 'post', config.api, path, payload ); 
+        const res = yield call(config.callApi, 'post', config.api, path, payload ); 
 
         if(!res) {
             yield put({
@@ -135,7 +135,7 @@ function* catalogTestAddNewFetchTests({path, payload} : any){
 
         yield put({type : CatalogActions.CATALOG_LIST_TESTS_NEW_TEST_FETCH_TESTS_FETCHING});
 
-        const res = yield call(config.apiCall, 'post', config.api, path, payload ); 
+        const res = yield call(config.callApi, 'post', config.api, path, payload ); 
 
         if(!res) {
             yield put({
@@ -162,7 +162,7 @@ function* catalogTestAddNewSelectTest({path, payload} : any){
 
     try {
 
-        const res = yield call(config.apiCall, 'post', config.api, path, payload );  
+        const res = yield call(config.callApi, 'post', config.api, path, payload );  
 
         
 
@@ -191,7 +191,7 @@ function* catalogListFetchTests ({path, payload} : any) {
 
     try {
 
-        const res = yield call(config.apiCall, 'post', config.api, path, payload );  
+        const res = yield call(config.callApi, 'post', config.api, path, payload );  
 
         if(!res) {
             yield put({
@@ -222,7 +222,7 @@ function* addUpdateTest({path, payload} : any){
 
         // yield put({type : CatalogActions.CATALOG_LIST_UPDATE_TEST_BY_USER_BEGIN})
 
-        const res = yield call(config.apiCall, 'post', config.api, path, payload );  
+        const res = yield call(config.callApi, 'post', config.api, path, payload );  
 
         if(!res) {
             yield put({

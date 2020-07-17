@@ -4,13 +4,13 @@ import { CatalogActions } from "../store/actions";
 export class CatalogClass {
   private dispatch: Dispatch;
 
-  private catalogTest: CatalogListTest = {};
-  private selectedTest: CatalogListTest = {};
+  private catalogTest: any = {};
+  private selectedTest: any = {};
 
   private token: AuthToken;
 
-  private reportedValue?: CatalogListTestReportedValue;
-  private reportedUnit?: CatalogListTestReportedUnit;
+  private reportedValue?: any;
+  private reportedUnit?: any;
 
   constructor(dispatch: Dispatch, token: AuthToken) {
     this.dispatch = dispatch;
@@ -241,21 +241,21 @@ export class CatalogClass {
   /**
    *
    */
-  setTestReferred = (e: CatalogListTestReferred) =>
+  setTestReferred = (e: any) =>
     (this.selectedTest.testReferred = e);
   /**
    *
    */
-  setTestPrice = (e: CatalogListTestPrice) => (this.selectedTest.testPrice = e);
+  setTestPrice = (e: any) => (this.selectedTest.testPrice = e);
   /**
    *
    */
-  setTestReportedValue = (e: CatalogListTestReportedValue) =>
+  setTestReportedValue = (e: any) =>
     (this.reportedValue = <number>e);
   /**
    *
    */
-  setTestReportedUnit = (e: CatalogListTestReportedUnit) =>
+  setTestReportedUnit = (e: any) =>
     (this.reportedUnit = e);
   /**
    *
@@ -287,7 +287,7 @@ export class CatalogClass {
    * @return int
    **/
 
-  getIndexIfExist = (a: any[], testname: CatalogListTestId): number =>
+  getIndexIfExist = (a: any[], testname: any): number =>
     a.findIndex(e => e.testId === testname);
 
   /**

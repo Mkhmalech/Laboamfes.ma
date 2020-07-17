@@ -1,9 +1,9 @@
 import { store } from "../../../index";
 import { StaffActions } from "../store/actions";
-// import { SettingActions } from "../../../ittyni-labsetting/src/store/actions";
+import { SettingActions } from "../../../ittyni-labsetting/src/store/actions";
 
 class Staff {
-  private accountName: string = "Centrale du CHU Hassan II";
+  private accountName: string = "FES";
 
   constructor() {}
 
@@ -36,7 +36,7 @@ class Staff {
    */
   fetchDepartement = () =>
     store.dispatch({
-      type: 'SettingActions.LAB_LABO_SETTING_LIST_DEPARTEMENT',
+      type: SettingActions.LAB_LABO_SETTING_LIST_DEPARTEMENT,
       payload: {
         query: `mutation {setting{listDepartement(accountName:"${this.accountName}"){name}}}`,
       },
@@ -48,7 +48,7 @@ class Staff {
    */
   addNewDepartement = (departement: any) =>
     store.dispatch({
-      type: 'SettingActions.LAB_LABO_SETTING_ADD_NEW_DEPARTEMENT',
+      type: SettingActions.LAB_LABO_SETTING_ADD_NEW_DEPARTEMENT,
       payload: {
         query: `mutation{setting{addDepartement(departement:{name:"${departement}",accountName : "${this.accountName}"})}}`,
       },

@@ -9,16 +9,16 @@ type CatalogListTestOptionTransport = boolean;
 type CatalogListTestOptionRemarks = string;
 type CatalogListTestOptionPhlebotomist = boolean;
 
-// function types
-const convertReportedToMinutes = (
-  repoterted: number,
-  reportedUnit: string
-): number =>
-  reportedUnit === "Mois"
-    ? repoterted * 24 * 30
-    : reportedUnit === "Jours"
-    ? repoterted * 24
-    : repoterted;
+// // function types
+// const convertReportedToMinutes = (
+//   repoterted: number,
+//   reportedUnit: string
+// ): number =>
+//   reportedUnit === "Mois"
+//     ? repoterted * 24 * 30
+//     : reportedUnit === "Jours"
+//     ? repoterted * 24
+//     : repoterted;
 
 interface CatalogTest {
   testName: string;
