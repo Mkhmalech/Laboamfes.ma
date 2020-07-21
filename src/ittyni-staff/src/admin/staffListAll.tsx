@@ -106,7 +106,7 @@ export const StaffListALL: React.FC<any> = () => {
                 <input placeholder="Search" name="search" value={search} onChange={e => onSearch(e)} />
             </div>
             <hr />
-            <Table>
+            <Table >
                 <thead>
                     <Tr>
                         <Th>nom</Th>
